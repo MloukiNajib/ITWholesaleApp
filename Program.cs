@@ -1,0 +1,69 @@
+﻿// See https://aka.ms/new-console-template for more information
+
+/* 
+Vous êtes un grossiste (wholesaler) en informatique et tenez une boutique ecommerce
+pas d'interface, pas de menu => directement le programme
+
+Produits :
+- console de jeu (50 switch 200€, 100 playstation 500€)
+- pc portable (10 bureautique 600€, 5 gamer 1500€)
+
+Promotions applicables sur le panier :
+- 1 acheté = 1 offert (donc si 2 dans le panier 1 devient gratuit, si 4 alors 2 gratuit...)
+- 10€ de réduction tous les 250€
+- 2 pc gamer achetés = 1 switch offerte (si présente dans le panier)
+- 20% sur les consoles de jeu 
+
+Le déroulé, 3 jours de suite :
+1. ajouter des produits au panier : 5 switch, 15 playstation, 3 pc bureautique, 2 pc gamer
+2. afficher le montant du panier
+3. appliquer les promotions du jour et afficher le prix remisé :
+      jour 1 : promo 1 = on paye 3 switch, 8 playstation, 2 pc b et 1 pc
+      jour 2 : promos 2+3
+      jour 3 : promo 4
+4. afficher l'état du stock et le chiffre d’affaires en fin de chaque journée
+*/
+
+using IT_Sale.Products;
+using IT_Sale.ShoppingCart;
+using IT_Sale.Store;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        
+       
+        // Initialisation des produits
+        var switchProduct = new Product { Name = "Switch", Description = "Console de jeu" };
+        var playstationProduct = new Product { Name = "Playstation", Description = "Console de jeu"};
+        var pcBureauProduct = new Product { Name = "PC Bureautique", Description = "Ordinateur portable bureautique" };
+        var pcGamerProduct = new Product { Name = "PC Gamer", Description = "Ordinateur portable gamer" };
+
+        // Initialisation du l'inventaire
+        var switchStock = new StockItem(switchProduct, 50, 200);
+        var playstationStock = new StockItem(playstationProduct, 100, 500);
+        var pcBureauStock = new StockItem(pcBureauProduct, 10, 600);
+        var pcGamerStock = new StockItem(pcGamerProduct, 5, 1500);
+
+        // Initialisation du Stock
+        Stock stock = new Stock();
+        stock.AddStockItem(switchStock);
+        stock.AddStockItem(playstationStock);
+        stock.AddStockItem(pcBureauStock);
+        stock.AddStockItem(pcGamerStock);
+
+        // 1. ajouter des produits au panier : 5 switch, 15 playstation, 3 pc bureautique, 2 pc gamer
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.AddItem(new CartItem(switchProduct, 5, switchStock.Price));
+        cart.AddItem(new CartItem(playstationProduct, 15, playstationStock.Price));
+        cart.AddItem(new CartItem(pcBureauProduct, 3, pcBureauStock.Price));
+        cart.AddItem(new CartItem(pcGamerProduct, 2, pcGamerStock.Price));
+
+        // 2. afficher le montant du panier
+        Console.WriteLine($"Montant du panier avant promotions : {cart.TotalPrice} €");
+
+
+    }
+}

@@ -1,0 +1,4 @@
+# VS, Build and Object files
+.vs/
+bin/
+obj/
