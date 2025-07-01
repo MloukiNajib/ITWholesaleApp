@@ -1,6 +1,6 @@
-﻿using IT_Sale.Products;
+﻿using ITWholesale.Products;
 
-namespace IT_Sale.Store
+namespace ITWholesale.Store
 {
     public class StockItem
     {

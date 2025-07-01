@@ -1,4 +1,4 @@
-﻿namespace IT_Sale.Store
+﻿namespace ITWholesale.Store
 {
     public class Stock
     {
@@ -15,7 +15,7 @@
 
         //public void UpdateStock(string productName, int quantity)
         //{
-        //    var product = Products.FirstOrDefault(p => p.Name == productName);
+        //    var product = Products.FirstOrDefault(p => p.ProductType == productName);
         //    if (product != null)
         //    {
         //        product.Quantity += quantity;

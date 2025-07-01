@@ -1,13 +1,14 @@
-# Epic: Cart Management with Promotions and Stock Tracking
+ï»¿# Epic: Cart Management with Promotions and Stock Tracking
 
 		Goal: Allow a customer to 
 				- add products to a cart, 
 				- apply promotion rules, 
 				- and track stock and revenue over days.
 
-# Épique : Gestion du panier avec promotions et suivi du stock
+# Ã‰pique : Gestion du panier avec promotions et suivi du stock
 
-		Objectif : Permettre à un client :
-				   - d’ajouter des produits à un panier, 
-				   - d'appliquer les règles de promotions, 
-				   - et de suivre le stock et le chiffre d’affaires au fil des journées.
+		Objectif : Permettre Ã  un client :
+				   - dâ€™ajouter des produits Ã  un panier, 
+				   - d'appliquer les rÃ¨gles de promotions, 
+				   - et de suivre le stock et le chiffre dâ€™affaires au fil des journÃ©es.
+

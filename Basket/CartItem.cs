@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using IT_Sale.Products;
+using ITWholesale.Products;
 
-namespace IT_Sale.ShoppingCart
+namespace ITWholesale.Basket
 {
     public class CartItem 
     {
