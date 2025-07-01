@@ -79,58 +79,59 @@ public class Program
             return discount;
         });
 
-        // 1. ajouter des produits au panier : 5 switch, 15 playstation, 3 pc bureautique, 2 pc gamer
 
-        ShoppingCart cart = new ShoppingCart();
-        cart.AddItem(new CartItem(switchProduct, 5, switchStock.Price));
-        cart.AddItem(new CartItem(playstationProduct, 15, playstationStock.Price));
-        cart.AddItem(new CartItem(pcBureauProduct, 3, pcBureauStock.Price));
-        cart.AddItem(new CartItem(pcGamerProduct, 2, pcGamerStock.Price));
-
-        // 2. afficher le montant du panier
-        Console.WriteLine($"Montant du panier avant promotions : {cart.TotalPrice} €");
-
-        // 3. appliquer les promotions du jour et afficher le prix remisé :
-        //  jour 1 : promo 1 = on paye 3 switch, 8 playstation, 2 pc b et 1 pc
-        // défenir les promotions
-        PromotionEngine promotionEngine = new PromotionEngine();
-        promotionEngine.AddPromotion(promotion1);
-        double day1Price = promotionEngine.ApplyPromotions(cart);
-        Console.WriteLine($"Prix remisé jour 1 : {day1Price} €");
-
-        //  jour 2 : promos 2+3
-        // Réinitialiser le panier pour le jour 2
-        cart = new ShoppingCart();
-        cart.AddItem(new CartItem(switchProduct, 5, switchStock.Price));
-        cart.AddItem(new CartItem(playstationProduct, 15, playstationStock.Price));
-        cart.AddItem(new CartItem(pcBureauProduct, 3, pcBureauStock.Price));
-        cart.AddItem(new CartItem(pcGamerProduct, 2, pcGamerStock.Price));
-        promotionEngine = new PromotionEngine();
-        promotionEngine.AddPromotion(promotion2);
-        promotionEngine.AddPromotion(promotion3);
-        double day2Price = promotionEngine.ApplyPromotions(cart);
-        Console.WriteLine($"Prix remisé jour 2 : {day2Price} €");
-
-        //  jour 3 : promo 4
-        // Réinitialiser le panier pour le jour 3
-        cart = new ShoppingCart();
-        cart.AddItem(new CartItem(switchProduct, 5, switchStock.Price));
-        cart.AddItem(new CartItem(playstationProduct, 15, playstationStock.Price));
-        cart.AddItem(new CartItem(pcBureauProduct, 3, pcBureauStock.Price));
-        cart.AddItem(new CartItem(pcGamerProduct, 2, pcGamerStock.Price));
-        promotionEngine = new PromotionEngine();
-        promotionEngine.AddPromotion(promotion4);
-        double day3Price = promotionEngine.ApplyPromotions(cart);
-        Console.WriteLine($"Prix remisé jour 3 : {day3Price} €");
-
-        // 4. afficher l'état du stock et le chiffre d’affaires en fin de chaque journée
-        double totalRevenue = stock.StockItems.Sum(item => item.Quantity * item.Price);
-        Console.WriteLine("État du stock :");
-        foreach (var stockItem in stock.StockItems)
+        // Simulation des 3 jours
+        for (int day = 1; day <= 3; day++)
         {
-            Console.WriteLine($"{stockItem.Product.ProductType} - Quantité: {stockItem.Quantity}, Prix unitaire: {stockItem.Price} €");
+            Console.WriteLine($"\n=== JOUR {day} ===");
+
+            // Afficher l'état du stock en début de journée
+            stock.DisplayStock($"État du stock en début de journée:{day}");
+            Console.WriteLine($"Chiffre d'affaires cumulé: {stock.GetTotalRevenue()} €");
+
+            // Créer le panier pour la journée
+            var cart = new ShoppingCart();
+            cart.AddItem(new CartItem(switchProduct, 5, 200));
+            cart.AddItem(new CartItem(playstationProduct, 15, 500));
+            cart.AddItem(new CartItem(pcBureauProduct, 3, 600));
+            cart.AddItem(new CartItem(pcGamerProduct, 2, 1500));
+
+            // Afficher le montant du panier
+            Console.WriteLine($"\nMontant du panier avant promotions: {cart.TotalPrice} €");
+
+            // Appliquer les promotions selon le jour
+            var promotionEngine = new PromotionEngine();
+            double discountedPrice = 0;
+
+            switch (day)
+            {
+                case 1:
+                    promotionEngine.AddPromotion(promotion1);
+                    discountedPrice = promotionEngine.ApplyPromotions(cart);
+                    break;
+                case 2:
+                    promotionEngine.AddPromotion(promotion2);
+                    promotionEngine.AddPromotion(promotion3);
+                    discountedPrice = promotionEngine.ApplyPromotions(cart);
+                    break;
+                case 3:
+                    promotionEngine.AddPromotion(promotion4);
+                    discountedPrice = promotionEngine.ApplyPromotions(cart);
+                    break;
+            }
+
+            Console.WriteLine($"Prix remisé jour {day}: {discountedPrice} €");
+
+            // Mettre à jour le stock
+            stock.UpdateStock(cart);
+
+            // Afficher l'état du stock en fin de journée
+            stock.DisplayStock($"\nÉtat du stock en fin de journée:{day}");
+            Console.WriteLine($"Chiffre d'affaires cumulé: {stock.GetTotalRevenue()} €");
         }
-        Console.WriteLine($"Chiffre d'affaires total : {totalRevenue} €");
+
+
+
         Console.WriteLine("Fin du programme.");
 
 

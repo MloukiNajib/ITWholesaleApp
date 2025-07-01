@@ -1,4 +1,6 @@
-﻿namespace ITWholesale.Store
+﻿using ITWholesale.Basket;
+
+namespace ITWholesale.Store
 {
     public class Stock
     {
@@ -13,18 +15,35 @@
             StockItems.Add(stockItem);
         }
 
-        //public void UpdateStock(string productName, int quantity)
-        //{
-        //    var product = Products.FirstOrDefault(p => p.ProductType == productName);
-        //    if (product != null)
-        //    {
-        //        product.Quantity += quantity;
-        //    }
-        //}
-        //public double GetTotalRevenue()
-        //{
-        //    return Products.Sum(p => p.TotalPrice * (p.Quantity - p.Quantity));
-        //}
+        // display stock items
+        public void DisplayStock(String message)
+        {
+            Console.WriteLine($" {message} ");
+            foreach (var item in StockItems)
+            {
+                Console.WriteLine($"Product: {item.Product.ProductType}, Description: {item.Product.Description}, Quantity: {item.Quantity}, Price: {item.Price}");
+            }
+        }
+
+        // Update stock after purchase
+        public void UpdateStock(ShoppingCart cart)
+        {
+            foreach (var item in cart.cartItemList)
+            {
+                var stockItem = StockItems.FirstOrDefault(si => si.Product.ProductType == item.Product.ProductType);
+                if (stockItem != null)
+                {
+                    stockItem.Quantity -= item.Quantity;
+                }
+            }
+        }
+
+        // get total revenue
+        public double GetTotalRevenue()
+        {
+            return StockItems.Sum(item => (item.InitialQuantity - item.Quantity) * item.Price);          
+        }
+
     }
 
 
