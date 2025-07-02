@@ -1,4 +1,4 @@
-# Scenario:  Wholesaler E-commerce Cart Management with Promotions
+#  E-commerce Wholesaler Cart Management with Promotions
 Vous êtes un grossiste (wholesaler) en informatique et tenez une boutique ecommerce
 
 Produits :
