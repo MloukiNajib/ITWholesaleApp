@@ -15,7 +15,7 @@ Le déroulé, 3 jours de suite :
 1. ajouter des produits au panier : 5 switch, 15 playstation, 3 pc bureautique, 2 pc gamer
 2. afficher le montant du panier
 3. appliquer les promotions du jour et afficher le prix remisé :
-      jour 1 : promo 1 = on paye 3 switch, 8 playstation, 2 pc b et 1 pc
-      jour 2 : promos 2+3
-      jour 3 : promo 4
-4. afficher l'état du stock et le chiffre d’affaires en fin de chaque journée
+   - jour 1 : promo 1 = on paye 3 switch, 8 playstation, 2 pc b et 1 pc     
+   - jour 2 : promos 2+3   
+   - jour 3 : promo 4
+5. afficher l'état du stock et le chiffre d’affaires en fin de chaque journée
