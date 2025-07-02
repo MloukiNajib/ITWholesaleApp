@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IT_Sale.Products
+namespace ITWholesale.Products
 {
     /**
      * Produits :
@@ -13,8 +13,7 @@ namespace IT_Sale.Products
      */
     public class Product
     {
-        public String productType { get; set; }
-        public string Name { get; set; }
+        public string ProductType { get; set; }
         public String Description { get; set; }
 
         // public int Quantity { get; set; }
